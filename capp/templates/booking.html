@@ -1,0 +1,60 @@
+
+{% extends 'base.html' %}
+{% load static%}
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+      <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% endblock %}
+
+ {% block content %}
+
+<section class="col-md-10">
+
+  <h1 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;"style="color:rgb(9, 248, 255);font-size:50px;margin-left:20px;" >iRehab</h1>
+</section>
+      <section class="col-md-8 col-md-offset-2">
+
+
+                <table class="uk-table uk-table-hover uk-table-condensed">
+                    <caption><h4>Reserve an in-patient session</h4></caption>
+                    {% if sessions %}
+                    <caption><h5 style="font-size:15px;color:rgb(20, 221, 106);">{{sessions|length}} sessions available</h5></caption>
+
+                    <thead>
+                        <tr>
+                          <th style="font-size:15px;color:rgb(9, 248, 255);">DOCTOR</th>
+                          <th style="font-size:15px;color:rgb(9, 248, 255);">DURATION</th>
+                          <th style="font-size:15px;color:rgb(9, 248, 255);">DATE</th>
+                          <th style="font-size:15px;color:rgb(9, 248, 255);">ACTION</th>
+                        </tr>
+                    </thead>
+
+                      {% for session in sessions %}
+
+                        <tbody>
+                            <tr>
+                                <td>DR. {{session.doctor.name | upper }}</td>
+                                <td>{{session.duration }}</td>
+                                <td>{{session.sloted_date  }}</td>
+                                <td>
+                                   <a href="{% url 'Reserve' session.id %}">
+                                      <!-- <button type="button" name="button" class="btn btn-primary"> Reserve</button> -->
+                                      <button class="uk-button uk-button-primary uk-button-small" style="background-color:rgb(9, 248, 255);font-size:12px;">Reserve</button>
+
+                                  </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                      </table>
+
+
+                    {% endfor %}
+                    {% else %}
+                    <p>no sessions</p>
+                    {% endif %}
+      </section>
+
+{% endblock %}

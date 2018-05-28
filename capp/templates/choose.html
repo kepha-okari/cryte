@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+{% load static %}
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+      <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% endblock %}
+
+ {% block content %}
+
+<div class="col-md-8">
+
+  <!-- <div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" style="background-image: url('http://upload.wikimedia.org/wikipedia/commons/4/46/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg');background-size:cover;"> -->
+  <div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" style="background-image: url('{{STATIC_URL}}../images/rehab.jpeg);background-size:cover;">
+
+    <div class="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">
+      <h1 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;"style="color:rgb(9, 248, 255);font-size:100px;" >iRehab</h1>
+
+      <p uk-margin>
+        <a href="{% url 'ViewSessions' %}">
+          <button class="uk-button uk-button-primary uk-button-small" style="background-color:rgb(9, 248, 255);font-size:10px;">Book Out-patient Session</button>
+        </a>
+        <a href="{% url 'ViewSlots' %}" style="margin:50px;">
+          <button class="uk-button uk-button-primary uk-button-small" style="border-color:rgb(9, 248, 255);font-size:10px;">Book in-patient Sessions</button>
+        </a>
+      </p>
+
+      <p uk-parallax="opacity: 0,1; y: 100,0; scale: 0.5,1; viewport: 0.5;"style="color:rgb(9, 248, 255);font-size:20px;position:auto;margin-top:40px;">Please choose how you would like to be served</p>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <div class="uk-height-large uk-background-cover uk-overflow-hidden uk-light uk-flex uk-flex-top" style="background-color:rgb(9, 248, 255);border-top-left-radius:100px">
+
+      <h3 uk-parallax="opacity: 0,1; y: -100,0; scale: 2,1; viewport: 0.5;"style="color:rgb(255, 255, 255);font-size:25px;margin-top:200px;margin-bottom:200px;padding-left:40px">JOIN THE TRANSFORMATION</h3>
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+{% load static%}
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+      <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% endblock %}
+
+ {% block content %}
+
+
+ <section class="col-md-12">
+   <div class="">
+
+   </div>
+   <p uk-margin>
+     <a href="{% url 'OutBook' %}">
+       <button class="uk-button uk-button-secondary uk-button-large">Out-Patient</button>
+     </a>
+     <a href="{% url 'InBook' %}">
+       <button class="uk-button uk-button-secondary uk-button-large">In-Patient</button>
+     </a>
+
+   </p>
+
+ </section>
+
+
+      <section class="col-md-8">
+
+                <table class="uk-table uk-table-hover uk-table-condensed">
+                    <caption><h3>Out-Patient Reservations</h3></caption>
+                    {% if reservations %}
+                    <caption><h5 style="font-size:15px;color:rgb(20, 221, 106);">{{reservations|length}} Patients</h5></caption>
+                    
+                    {% endif %}
+                    <thead>
+                        <tr>
+                            <th style="font-size:15px;color:red;">DATE.</th>
+                            <th style="font-size:15px;color:red;">DURATION</th>
+                            <th style="font-size:15px;color:red;">PATIENT</th>
+                            <th style="font-size:15px;color:red;">DOCTOR</th>
+                        </tr>
+
+                      {% for reservation in reservations %}
+                        {% if reservation.Availability == False %}
+                        <tbody>
+                            <tr>
+                                <td>{{reservation.sloted_date}}</td>
+                                <td>{{reservation.duration}}</td>
+                                <td><a href="{% url 'ViewProfile' reservation.user.id %}">{{reservation.user.username | upper }}</a></td>
+                                <td>Dr. {{reservation.doctor.name | upper }}</td>
+                            </tr>
+                        {% else %}
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td>NO RESERVATIONS</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                      {% endif %}
+
+
+                    {% endfor %}
+
+      </section>
+
+{% endblock %}

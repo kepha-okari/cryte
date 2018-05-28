@@ -1,0 +1,48 @@
+<!--The search form above-->
+
+            <nav class="uk-navbar-container" uk-navbar >
+                <div class="uk-navbar-left" style="margin-right: 200px;">
+
+                    <ul class="uk-navbar-nav" style="margin-right: 200px;">
+                        <li ><a href="{% url 'bookings' %}" style="color:rgb(0, 0, 0);font-size:15px;">HOME</a> </li>
+                        <li><a href="{% url 'AllQuestions' %}"><button class="uk-button uk-button-default uk-button-large" style="border-color:rgb(9, 248, 255);font-size:12px;">View Questions</button></a></li>
+                        <li class="uk-active"><a href="{% url 'PostQuestion' %}"><button class="uk-button uk-button-default uk-button-large" style="border-color:rgb(9, 248, 255);font-size:12px;">Ask A Question</button></a></li>
+
+                     </ul>
+
+                </div>
+
+
+
+
+                <div class="uk-navbar-right" style="">
+
+                          <p uk-margin>
+          <a href="{% url 'Choose' %}">
+            <button class="uk-button uk-button-default uk-button-large" style="border-color:rgb(9, 248, 255);font-size:12px;">View Sessions</button>
+          </a>
+
+        </p>
+                  <ul class="uk-navbar-nav">
+                      <li ><a href="{%url 'Profile'  %}" style="color:rgb(0, 0, 0);font-size:15px;">{{request.user.username | upper}}</a></li>
+                      <li>
+                            <a href="#" style="color:rgb(0, 0, 0);font-size:15px;">Account</a>
+                            <div class="uk-navbar-dropdown">
+                              {% if user.is_authenticated %}
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="#">Home</a></li>
+                                    <li><a href="/accounts/password/change">Change Password</a></li>
+                                    <li><a href="{% url 'Profile' %}">Profile</a></li>
+                                    <li><a href="/logout">Logout</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li><a href="/accounts/login">Login</a></li>
+                        {% endif %}
+
+                  </ul>
+                </div>
+
+            </nav>

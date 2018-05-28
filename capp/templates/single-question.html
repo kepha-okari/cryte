@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+{% load bootstrap3 %}
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+      <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% endblock %}
+
+ {% block content %}
+
+   <div class="col-md-1">
+
+   </div>
+      <hr style="color:rgb(19, 175, 167);">
+
+      <section class="col-md-5">
+
+          <div class="wrap col-md-12"style="">
+            <div class="box col-md-12" >
+              <div class="" >
+
+                <article class="uk-comment">
+                    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                          <img class="uk-comment-avatar" src="http://upload.wikimedia.org/wikipedia/commons/4/46/Jennifer_Lawrence_at_the_83rd_Academy_Awards.jpg" width="60" height="60" alt="">
+                        </div>
+
+                        <div class="uk-width-expand">
+
+                            <ul class="uk-comment-meta uk-subnav uk-subnav-divider">
+                                <li><a href="#">{{question.user.username}}</a></li>
+                            </ul>
+
+                            <h4 class="uk-comment-title uk-subnav-divider uk-margin-remove">{{question.topic|upper}}</h4>
+                            <ul class="uk-comment-meta uk-subnav uk-subnav-divider">
+                                <li><a href="#">{{question.date_asked | timesince}}</a></li>
+                                <li><a href="{% url 'SingleQuestion' question.id %}">click to view</a></li>
+                                <li><a href="{% url 'Comment' question.id %}">Comment</a></li>
+                            </ul>
+
+                            <ul class="uk-comment-list">
+                                <li>
+                                    <article class="uk-comment">{{question.narrative}}</article>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </header>
+                    <div class="uk-comment-body">
+
+                    </div>
+                    <hr class="uk-divider-icon">
+                </article>
+
+                {% if comments %}
+                  {% for comment in comments %}
+                  <h4 class="uk-comment-title uk-subnav-divider uk-margin-remove" style="color:rgb(98, 201, 192);font-size:15px;padding-bottom:15px;"> {{comments|length}} Comments</h4>
+
+                  <h4 class="uk-comment-title uk-subnav-divider uk-margin-remove"><a class="uk-link-reset" href="{% url 'SingleQuestion' question.id %}">{{comment.opinion|upper}}</a></h4>
+                  <ul class="uk-comment-meta uk-subnav uk-subnav-divider">
+                      <li><a href="#">{{question.date_asked | timesince}}</a></li>
+                      <li><a href="{% url 'SingleQuestion' question.id %}">{{question.user.username}}</li>
+                  </ul>
+                  {% endfor %}
+                {% else %}
+                    <p>No comments</p>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
+
+
+      </section>
+
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% extends 'base.html' %}
+{% load static%}
+<!-- Styles block -->
+{% block styles %}
+
+    {{block.super}}
+      <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+{% endblock %}
+
+ {% block content %}
+
+
+ <section class="col-md-12">
+   <div class="">
+
+   </div>
+   <p uk-margin>
+     <a href="{% url 'OutBook' %}">
+       <button class="uk-button uk-button-secondary uk-button-large">Out-Patient</button>
+     </a>
+     <a href="{% url 'InBook' %}">
+       <button class="uk-button uk-button-secondary uk-button-large">In-Patient</button>
+     </a>
+
+   </p>
+
+ </section>
+
+
+      <section class="col-md-6">
+
+                <table class="uk-table uk-table-hover uk-table-condensed">
+                    <caption><h3>Patient Information</h3></caption>
+
+                    <thead>
+                        <tr>
+                            <th style="font-size:15px;color:rgb(24, 215, 227)">
+                              Full Name: {{profile.first_name}} {{profile.last_name}}
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="font-size:15px;color:rgb(12, 60, 94)">
+                              Alias: {{profile.user.username}}
+                            </th>
+                        </tr>
+
+                        <tbody>
+                        <tr>
+                             <td>Email: {{profile.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone: {{profile.phone_number}}</td>
+                        </tr>
+                        <tr>
+                             <td>Addiction: {{profile.addiction}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+
+
+      </section>
+
+{% endblock %}
